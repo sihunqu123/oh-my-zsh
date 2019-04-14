@@ -17,7 +17,16 @@ fi
 
 bindkey -e                                            # Use emacs key bindings
 
-bindkey '\ew' kill-region                             # [Esc-w] - Kill from the cursor to the mark
+# bindkey '\ew' kill-region                             # [Esc-w] - Kill from the cursor to the mark
+
+# keep behavior the same as bash
+my-backward-delete-word() {
+  local WORDCHARS="*?_-.[]~=/&;!#$%^(){}<>"
+  zle backward-kill-word
+}
+zle -N my-backward-delete-word
+bindkey '^W' my-backward-delete-word
+
 bindkey -s '\el' 'ls\n'                               # [Esc-l] - run command: ls
 bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
 if [[ "${terminfo[kpp]}" != "" ]]; then
