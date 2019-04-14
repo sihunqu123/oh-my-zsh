@@ -1,3 +1,7 @@
+if [ "" = "" ]; then
+  echo "about to quit"
+  # return 0
+fi
 # Set ZSH_CACHE_DIR to the path where cache files should be created
 # or else we will use the default cache/
 if [[ -z "$ZSH_CACHE_DIR" ]]; then
@@ -28,7 +32,7 @@ if [[ -z "$ZSH_CUSTOM" ]]; then
     ZSH_CUSTOM="$ZSH/custom"
 fi
 
-
+echo "WORDCHARS: ${WORDCHARS}"
 # Load all of the config files in ~/oh-my-zsh that end in .zsh
 # TIP: Add files you don't want in git to .gitignore
 for config_file ($ZSH/lib/*.zsh); do
@@ -37,6 +41,7 @@ for config_file ($ZSH/lib/*.zsh); do
   source $config_file
 done
 
+echo "after WORDCHARS: ${WORDCHARS}"
 
 is_plugin() {
   local base_dir=$1
